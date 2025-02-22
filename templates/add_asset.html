@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add New Asset</h2>
+    <form action="{{ url_for('add_asset') }}" method="POST" class="asset-form">
+        <div class="form-group">
+            <label for="asset_id">Asset ID</label>
+            <input type="text" id="asset_id" name="asset_id" required>
+        </div>
+
+        <div class="form-group">
+            <label for="asset_name">Asset Name</label>
+            <input type="text" id="asset_name" name="asset_name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="qr_code_number">QR Code Number</label>
+            <input type="text" id="qr_code_number" name="qr_code_number" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+
+        <div class="form-group">
+            <label for="installation_date">Installation Date</label>
+            <input type="date" id="installation_date" name="installation_date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+                <option value="active">Active</option>
+                <option value="maintenance">Maintenance</option>
+                <option value="retired">Retired</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add Asset</button>
+    </form>
+</div>
+{% endblock %} 

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="assets-container">
+    <h2>Municipal Assets</h2>
+    
+    <div class="asset-form-container">
+        <h3>Add New Asset</h3>
+        <form action="{{ url_for('create_asset') }}" method="POST" class="asset-form">
+            <div class="form-group">
+                <label for="asset_id">Asset ID</label>
+                <input type="text" id="asset_id" name="asset_id" required>
+            </div>
+
+            <div class="form-group">
+                <label for="asset_name">Asset Name</label>
+                <input type="text" id="asset_name" name="asset_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="asset_type">Asset Type</label>
+                <select id="asset_type" name="asset_type" required>
+                    <option value="">Select Type</option>
+                    <option value="light_pole">Light Pole</option>
+                    <option value="fire_hydrant">Fire Hydrant</option>
+                    <option value="traffic_signal">Traffic Signal</option>
+                    <option value="bus_seat">Bus Seat</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="qr_code_number">QR Code Number</label>
+                <input type="text" id="qr_code_number" name="qr_code_number" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="installation_date">Installation Date</label>
+                <input type="datetime-local" id="installation_date" name="installation_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" name="status" required>
+                    <option value="active">Active</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="retired">Retired</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Add Asset</button>
+        </form>
+    </div>
+
+    <div class="assets-list">
+        <h3>Existing Assets</h3>
+        <div class="table-responsive">
+            <table class="assets-table">
+                <thead>
+                    <tr>
+                        <th>Asset ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>QR Code</th>
+                        <th>Location</th>
+                        <th>Installation Date</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for asset in assets %}
+                    <tr>
+                        <td>{{ asset.asset_id }}</td>
+                        <td>{{ asset.asset_name }}</td>
+                        <td>{{ asset.asset_type }}</td>
+                        <td>{{ asset.qr_code_number }}</td>
+                        <td>{{ asset.location }}</td>
+                        <td>{{ asset.installation_date }}</td>
+                        <td>{{ asset.status }}</td>
+                        <td>{{ asset.created_at }}</td>
+                        <td>{{ asset.updated_at }}</td>
+                        <td>
+                            <button class="btn btn-small btn-view" data-id="{{ asset.id }}">View</button>
+                            <button class="btn btn-small btn-edit" data-id="{{ asset.id }}">Edit</button>
+                            <button class="btn btn-small btn-delete" data-id="{{ asset.id }}">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %} 

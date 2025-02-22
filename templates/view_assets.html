@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="assets-container">
+    <h2>Asset List</h2>
+    <div class="table-responsive">
+        <table class="assets-table">
+            <thead>
+                <tr>
+                    <th>Asset ID</th>
+                    <th>Name</th>
+                    <th>QR Code</th>
+                    <th>Location</th>
+                    <th>Installation Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for asset in assets %}
+                <tr>
+                    <td>{{ asset.asset_id }}</td>
+                    <td>{{ asset.asset_name }}</td>
+                    <td>{{ asset.qr_code_number }}</td>
+                    <td>{{ asset.location }}</td>
+                    <td>{{ asset.installation_date }}</td>
+                    <td>{{ asset.status }}</td>
+                    <td>
+                        <button class="btn btn-small btn-view" data-id="{{ asset.id }}">View</button>
+                        <button class="btn btn-small btn-edit" data-id="{{ asset.id }}">Edit</button>
+                        <button class="btn btn-small btn-delete" data-id="{{ asset.id }}">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %} 
